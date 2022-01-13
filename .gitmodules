@@ -6,3 +6,6 @@
 	path = hitobito_sjas
 	url = https://github.com/hitobito/hitobito_sjas.git
 	branch = master
+[submodule "hitobito_youth"]
+	path = hitobito_youth
+	url = https://github.com/hitobito/hitobito_youth.git
