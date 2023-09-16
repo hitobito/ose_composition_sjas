@@ -1,0 +1,11 @@
+name: 'Build composition repo'
+
+on:
+  workflow_dispatch: # Allow triggering manually
+
+jobs:
+  test:
+    env:
+      project: ${{ ${github.event.repository.name//ose_composition_} }}
+    run: |
+      echo "$project"
