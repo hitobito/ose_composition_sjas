@@ -4,11 +4,22 @@ on:
   workflow_dispatch: # Allow triggering manually
 
 jobs:
-  test:
+  determine_project:
     runs-on: ubuntu-latest
-    env:
-      project: ${{ ${github.event.repository.name//ose_composition_} }}
-
+    outputs:
+      project: ${{ steps.determine.outputs.project }}
     steps:
-      - run: |
-          echo "$project"
+      - name: Extract project-name from repo-name
+        id: determine
+        run: |
+          echo "${GITHUB_REPO##ose_composition_}" >> "$GITHUB_OUTPUT"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: determine_project
+    env:
+      PROJECT: ${{ needs.determine_project.outputs.project }}
+    steps:
+      - name: "Build"
+        run: |
+          echo "building project $PROJECT soon..."
