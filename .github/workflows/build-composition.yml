@@ -15,11 +15,11 @@ jobs:
           echo "project=${GITHUB_REPOSITORY##hitobito/ose_composition_}" >> "$GITHUB_OUTPUT"
 
   build:
-    runs-on: ubuntu-latest
+    uses: hitobito/hitobito/.github/workflows/build-image.yml@new-dockerfile
     needs: determine_project
-    env:
-      PROJECT: ${{ needs.determine_project.outputs.project }}
-    steps:
-      - name: "Build"
-        run: |
-          echo "building project $PROJECT soon..."
+    with:
+      composition: ${{ github.event.repository.name }}
+      source_ref: devel
+      project: ${{ needs.determine_project.outputs.project }}
+      # version: sssoooooonnn...
+    secrets: inherit
