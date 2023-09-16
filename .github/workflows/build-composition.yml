@@ -7,5 +7,7 @@ jobs:
   test:
     env:
       project: ${{ ${github.event.repository.name//ose_composition_} }}
-    run: |
-      echo "$project"
+
+    steps:
+      run: |
+        echo "$project"
