@@ -12,7 +12,7 @@ jobs:
       - name: Extract project-name from repo-name
         id: determine
         run: |
-          echo "project=${GITHUB_REPO##ose_composition_}" >> "$GITHUB_OUTPUT"
+          echo "project=${GITHUB_REPOSITORY##hitobito/ose_composition_}" >> "$GITHUB_OUTPUT"
 
   build:
     runs-on: ubuntu-latest
