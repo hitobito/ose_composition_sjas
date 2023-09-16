@@ -9,5 +9,5 @@ jobs:
       project: ${{ ${github.event.repository.name//ose_composition_} }}
 
     steps:
-      run: |
-        echo "$project"
+      - run: |
+          echo "$project"
