@@ -19,7 +19,7 @@ jobs:
     needs: determine_project
     with:
       composition: ${{ github.event.repository.name }}
-      source_ref: newer-new-build-order
+      source_ref: devel
       project: ${{ needs.determine_project.outputs.project }}
       # version: sssoooooonnn...
     secrets: inherit
