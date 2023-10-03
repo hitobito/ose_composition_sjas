@@ -19,4 +19,5 @@ jobs:
       composition: ${{ github.event.repository.name }}
       next_version: patch
       stage: ${{ inputs.stage }}
+      target_branch: new-dockerfile
     secrets: inherit
