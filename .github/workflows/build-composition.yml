@@ -2,26 +2,43 @@ name: 'Build composition repo'
 
 on:
   workflow_dispatch: # Allow triggering manually
+    inputs:
+      stage:
+        type: choice
+        description: "Stage of release to be prepared"
+        default: integration
+        required: true
+        options:
+          - integration
+          - production
   # schedule:
   # - cron:  '24 2 * * *'
 
 jobs:
-  determine_project:
-    runs-on: ubuntu-latest
-    outputs:
-      project: ${{ steps.determine.outputs.project }}
-    steps:
-      - name: Extract project-name from repo-name
-        id: determine
-        run: |
-          echo "project=${GITHUB_REPOSITORY##hitobito/ose_composition_}" >> "$GITHUB_OUTPUT"
+  settings:
+    uses: hitobito/hitobito/.github/workflows/stage-settings.yml@new-dockerfile
+    with:
+      composition: ${{ github.event.repository.name }}
+      stage: ${{ inputs.stage }}
+
+  version:
+    uses: hitobito/hitobito/.github/workflows/remote-version.yml@new-dockerfile
+    needs:
+      - settings
+    with:
+      composition: ${{ settings.repo_url }}
+      stage: ${{ settings.release_stage }}
 
   build:
     uses: hitobito/hitobito/.github/workflows/build-image.yml@new-dockerfile
-    needs: determine_project
+    needs:
+      - settings
+      - version
     with:
-      composition: ${{ github.event.repository.name }}
-      source_ref: devel
-      project: ${{ needs.determine_project.outputs.project }}
-      version: release
+      composition: ${{ needs.settings.outputs.repo_name }}
+      source_ref: ${{ needs.settings.outputs.composition_branch }}
+      project: ${{ needs.settings.outputs.project }}
+      version: ${{ needs.version.outputs.version }}
+      stage: ${{ needs.settings.outputs.release_stage }}
+      push: false
     secrets: inherit

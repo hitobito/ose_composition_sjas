@@ -2,11 +2,21 @@ name: 'Prepare Release'
 
 on:
   workflow_dispatch: # Allow triggering manually
+    inputs:
+      stage:
+        type: choice
+        description: "Stage of release to be prepared"
+        default: integration
+        required: true
+        options:
+          - integration
+          - production
 
 jobs:
   prepare_release:
-    uses: hitobito/hitobito/.github/workflows/prepare-version.yml@master
+    uses: hitobito/hitobito/.github/workflows/prepare-version.yml@new-dockerfile
     with:
       composition: ${{ github.event.repository.name }}
       next_version: patch
+      stage: ${{ inputs.stage }}
     secrets: inherit
