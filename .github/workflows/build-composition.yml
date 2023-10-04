@@ -27,7 +27,7 @@ jobs:
       - settings
     with:
       repository_url: ${{ needs.settings.outputs.repo_url }}
-      stage: ${{ needs.settings.outputs.release_stage }}
+      stage: ${{ inputs.stage }}
 
   build:
     uses: hitobito/hitobito/.github/workflows/build-image.yml@new-dockerfile
@@ -39,6 +39,6 @@ jobs:
       source_ref: ${{ needs.settings.outputs.composition_branch }}
       project: ${{ needs.settings.outputs.project }}
       version: ${{ needs.version.outputs.version }}
-      stage: ${{ needs.settings.outputs.release_stage }}
+      stage: ${{ inputs.stage }}
       push: false
     secrets: inherit
