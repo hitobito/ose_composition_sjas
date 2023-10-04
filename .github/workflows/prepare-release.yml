@@ -16,7 +16,7 @@ jobs:
   prepare_release:
     uses: hitobito/hitobito/.github/workflows/prepare-version.yml@new-dockerfile
     with:
-      composition: ${{ github.event.repository.name }}
+      composition: ${{ github.repository }}
       next_version: patch
       stage: ${{ inputs.stage }}
       target_branch: new-dockerfile

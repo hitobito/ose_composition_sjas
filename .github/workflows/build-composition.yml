@@ -18,7 +18,7 @@ jobs:
   settings:
     uses: hitobito/hitobito/.github/workflows/stage-settings.yml@new-dockerfile
     with:
-      repository: ${{ github.event.repository.name }}
+      repository: ${{ github.repository }}
       stage: ${{ inputs.stage }}
 
   version:
