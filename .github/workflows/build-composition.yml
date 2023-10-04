@@ -5,7 +5,7 @@ on:
     inputs:
       stage:
         type: choice
-        description: "Stage of release to be prepared"
+        description: "Stage of release to be built"
         default: integration
         required: true
         options:
@@ -18,7 +18,7 @@ jobs:
   settings:
     uses: hitobito/hitobito/.github/workflows/stage-settings.yml@new-dockerfile
     with:
-      composition: ${{ github.event.repository.name }}
+      repository: ${{ github.event.repository.name }}
       stage: ${{ inputs.stage }}
 
   version:
