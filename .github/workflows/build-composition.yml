@@ -26,8 +26,8 @@ jobs:
     needs:
       - settings
     with:
-      composition: ${{ settings.repo_url }}
-      stage: ${{ settings.release_stage }}
+      composition: ${{ needs.settings.outputs.repo_url }}
+      stage: ${{ needs.settings.outputs.release_stage }}
 
   build:
     uses: hitobito/hitobito/.github/workflows/build-image.yml@new-dockerfile
