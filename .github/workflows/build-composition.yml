@@ -16,13 +16,13 @@ on:
 
 jobs:
   settings:
-    uses: hitobito/hitobito/.github/workflows/stage-settings.yml@new-dockerfile
+    uses: hitobito/hitobito/.github/workflows/stage-settings.yml@master
     with:
       repository: ${{ github.repository }}
       stage: ${{ inputs.stage }}
 
   version:
-    uses: hitobito/hitobito/.github/workflows/remote-version.yml@new-dockerfile
+    uses: hitobito/hitobito/.github/workflows/remote-version.yml@master
     needs:
       - settings
     with:
@@ -30,7 +30,7 @@ jobs:
       stage: ${{ inputs.stage }}
 
   build:
-    uses: hitobito/hitobito/.github/workflows/build-image.yml@new-dockerfile
+    uses: hitobito/hitobito/.github/workflows/build-image.yml@master
     needs:
       - settings
       - version

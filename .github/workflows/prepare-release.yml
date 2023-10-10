@@ -14,10 +14,10 @@ on:
 
 jobs:
   prepare_release:
-    uses: hitobito/hitobito/.github/workflows/prepare-version.yml@new-dockerfile
+    uses: hitobito/hitobito/.github/workflows/prepare-version.yml@master
     with:
       composition: ${{ github.repository }}
       next_version: patch
       stage: ${{ inputs.stage }}
-      target_branch: new-dockerfile
+      # target_branch: master
     secrets: inherit
