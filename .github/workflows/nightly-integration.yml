@@ -2,8 +2,8 @@ name: 'Update Integration'
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron:  '24 2 * * *'
+  schedule:
+    - cron: '24 2 * * 1-5'
 
 jobs:
   prepare:
