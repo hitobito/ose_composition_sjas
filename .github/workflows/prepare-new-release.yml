@@ -29,6 +29,11 @@ on:
         description: "Branch to be released"
         required: false
         default: "master"
+      dry_run:
+        type: boolean
+        description: "Only show commands, do not execute them"
+        required: true
+        default: false
 
   workflow_call:
     inputs:
@@ -51,6 +56,11 @@ on:
         description: "Branch to be released"
         required: false
         default: "master"
+      dry_run:
+        type: boolean
+        description: "Only show commands, do not execute them"
+        required: true
+        default: false
 
 jobs:
   prepare_release:
@@ -61,4 +71,5 @@ jobs:
       next_version:  ${{ inputs.version }}
       stage:         ${{ inputs.stage }}
       target_branch: ${{ inputs.branch }}
+      dry_run:       ${{ inputs.dry_run }}
     secrets: inherit
