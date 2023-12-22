@@ -64,7 +64,7 @@ on:
 
 jobs:
   prepare_release:
-    uses: hitobito/hitobito/.github/workflows/prepare-version.yml@feature/2214-improve-version-handling
+    uses: hitobito/hitobito/.github/workflows/prepare-version.yml@master
     with:
       composition:   ${{ github.repository }}
       release_type:  ${{ inputs.release }}
