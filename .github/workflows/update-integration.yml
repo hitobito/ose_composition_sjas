@@ -12,7 +12,7 @@ on:
     - cron: '45 2 * * 1-5'
 
 jobs:
-  prepare:
+  release:
     uses: hitobito/hitobito/.github/workflows/release.yml@master
     with:
       composition: ${{ github.repository }}
