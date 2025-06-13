@@ -9,7 +9,7 @@ on:
         required: false
         default: "master"
   schedule:
-    - cron: '45 2 * * 1-5'
+    - cron: '47 2 * * 1-5'
 
 jobs:
   release:
